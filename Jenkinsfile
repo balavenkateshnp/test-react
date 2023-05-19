@@ -7,7 +7,11 @@ pipeline {
 
             }
         }  
-        
+       stage('Approval') {
+            steps {
+                input "Proceed with the Deployment?"
+            }
+        } 
         
        stage ('Prod codes receiving!') {
             steps{
