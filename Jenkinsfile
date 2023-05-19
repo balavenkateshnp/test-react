@@ -12,7 +12,7 @@ pipeline {
        stage ('dev codes receiving!') {
             steps{
                 sshagent(credentials : ['elk-server']) {
-                sh 'ssh -o StrictHostKeyChecking=no root@103.77.232.85 git -C /var/www/html/test-react/ pull'
+                sh 'ssh -o StrictHostKeyChecking=no root@103.77.232.85 git -C /var/www/test-react/ pull'
                  }
                  }
                          }   
