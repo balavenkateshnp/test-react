@@ -12,7 +12,7 @@ pipeline {
                 script {
                     def userInput = input(
                         id: 'userInput',
-                        message: 'Please review and provide approval',
+                        message: 'Please review and provide approval for production',
                         parameters: [
                             string(name: 'comments', defaultValue: '', description: 'Comments'),
                            // booleanParam(name: 'proceed', defaultValue: true, description: 'Proceed with the next stage?'),
