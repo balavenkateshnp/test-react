@@ -9,9 +9,33 @@ pipeline {
         }  
        stage('Approval') {
             steps {
-                input "Proceed with the Deployment?"
+                script {
+                    def userInput = input(
+                        id: 'userInput',
+                        message: 'Please review and provide approval',
+                        parameters: [
+                            string(name: 'comments', defaultValue: '', description: 'Comments'),
+                           // booleanParam(name: 'proceed', defaultValue: true, description: 'Proceed with the next stage?'),
+                           // booleanParam(name: 'abort', defaultValue: false, description: 'Abort the pipeline?')
+                        ],
+                        submitter: 'user1, user2',
+                        submitterParameter: 'APPROVER'
+                    )
+                    // Access the input values using userInput['<parameter-name>']
+                    def comments = userInput['comments']
+                    def proceed = userInput['proceed']
+                    def abort = userInput['abort']
+                    
+                    // Add custom logic based on the input values
+                    if (proceed) {
+                        echo 'Proceeding to the next stage'
+                    } else if (abort) {
+                        error('Pipeline aborted based on user input')
+                    }
+                    echo "Comments: ${comments}"
+                }
             }
-        } 
+        }
         
        stage ('Prod codes receiving!') {
             steps{
