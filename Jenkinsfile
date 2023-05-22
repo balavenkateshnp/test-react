@@ -3,6 +3,7 @@ pipeline {
    stages {
         stage('Git clone') {
             steps {
+
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-password', url: 'https://github.com/balavenkateshnp/test-react.git']]])
 
             }
