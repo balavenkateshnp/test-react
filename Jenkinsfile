@@ -42,7 +42,7 @@ pipeline {
        stage ('Prod codes receiving!') {
             steps{
                 sshagent(credentials : ['ssh-node']) {
-                sh 'ssh -o StrictHostKeyChecking=no blaze@192.151.159.205 git -C /var/www/html/test-react/ pull'
+                sh 'ssh -o StrictHostKeyChecking=no blaze@192.151.159.205 git -C /var/www/html/test-react/ pull origin main'
                  }
                  }
                          }   
